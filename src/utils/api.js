@@ -21,3 +21,9 @@ export const getTopics = () => {
     })
 }
 
+export const getArticleById = (article_id) => {
+    return newsApi.get(`${baseUrl}/articles/${article_id}`)
+        .then(({ data }) => {
+            return data.article
+        })
+}

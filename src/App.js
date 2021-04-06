@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import ArticlesList from './components/ArticlesList'
+import IndividualArticle from './components/IndividualArticle'
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Navbar />
       <Router className="content">
         <ArticlesList path="/"/>
-        <ArticlesList path="/:topic/articles"/>
+        <ArticlesList path="/:topic/articles" />
+        <IndividualArticle path="/:topic/articles/:article_id" />
       </Router>
     </div>
   );
