@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {getArticles} from '../utils/getArticles'
+import { Link } from '@reach/router'
+
+import {getArticles} from '../utils/api'
 
 class ArticlesList extends Component {
     state = {
@@ -8,9 +10,19 @@ class ArticlesList extends Component {
     }
 
     componentDidMount() {
-        return getArticles().then((articles) => {
+        const {topic} = this.props
+        return getArticles(topic).then((articles) => {
             this.setState({articles, isLoading: false})
         })
+    }
+
+    componentDidUpdate(prevProps) {
+        const { topic } = this.props
+        if (topic !== prevProps.topic) {
+            return getArticles(topic).then((articles) => {
+                this.setState({articles, isLoading: false})
+            })
+        }
     }
     
     render() {
@@ -19,13 +31,14 @@ class ArticlesList extends Component {
         if (this.state.isLoading) return (<p>Articles loading...</p>)
 
         return (
-            <main className="articles-list">
-                {articles.map(({article_id, title, topic, body}) => {
+            <main>
+                {articles.map(({ article_id, title, topic, body }) => {
+                    let bodyPreview = body.substring(0, 140)
                     return (
                     <section className="article-card" key={article_id}>
                         <h2>{title}</h2>
                         <h3>{topic}</h3>
-                        <p>{body}</p>
+                        <p>{bodyPreview}... <Link to="/">Read more</Link></p>
                     </section>
                     )
                 })}

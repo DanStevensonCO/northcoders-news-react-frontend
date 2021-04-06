@@ -1,3 +1,5 @@
+import { Router } from '@reach/router'
+
 import './App.css';
 import Header from './components/Header'
 import Navbar from './components/Navbar'
@@ -8,7 +10,10 @@ function App() {
     <div className="App">
       <Header />
       <Navbar />
-      <ArticlesList />
+      <Router className="content">
+        <ArticlesList path="/"/>
+        <ArticlesList path="/:topic/articles"/>
+      </Router>
     </div>
   );
 }
