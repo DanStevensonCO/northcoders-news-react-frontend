@@ -12,7 +12,6 @@ class ArticlesList extends Component {
     componentDidMount() {
         const {topic} = this.props
         return getArticles(topic).then((articles) => {
-            // console.log(articles)
             this.setState({articles, isLoading: false})
         })
     }
@@ -45,7 +44,7 @@ class ArticlesList extends Component {
 
                     return (
                     <section className="article-card" key={article_id}>
-                        <h2><Link to={path}>{title}</Link></h2>
+                            <h2><Link to={`/${path}`}>{title}</Link></h2>
                             <h3>{topic}</h3>
                             <h3>Votes: { votes }</h3>
                             <h3>By {author} on {formattedDate}</h3>

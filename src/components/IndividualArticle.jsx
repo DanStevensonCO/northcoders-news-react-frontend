@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {getArticleById} from '../utils/api'
+import {getArticleById, getCommentsByArticleId} from '../utils/api'
 
 class IndividualArticle extends Component {
     state = {
@@ -14,10 +14,18 @@ class IndividualArticle extends Component {
         return getArticleById(article_id).then((article) => {
             this.setState({article, isLoading: false})
         })
+        .then(() => {
+            return getCommentsByArticleId(article_id).then((comments) => {
+                console.log(comments)
+                this.setState({comments})
+            })
+        })
     }
 
     render() {
         const { title, body, votes, topic, author, created_at } = this.state.article
+
+        const {comments} = this.state
 
         let dateObj = new Date(created_at)
         let dateElems = dateObj.toString().split(" ")
@@ -34,6 +42,16 @@ class IndividualArticle extends Component {
                 <h3>By {author} on {formattedDate}</h3>
                 <p>{body}</p>
                 <h2>Comments:</h2>
+
+                    {comments.map((comment) => {
+                        return (
+                            <div>
+                                <p>{comment.author} | votes: { comment.votes}</p>
+                                <p>{ comment.body}</p>
+                            </div>
+                        )
+                    })}
+
             </article>
         );
     }
