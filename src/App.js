@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Navbar from './components/Navbar'
 import ArticlesList from './components/ArticlesList'
 import IndividualArticle from './components/IndividualArticle'
+import WriteArticle from './components/WriteArticle'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <ArticlesList path="/"/>
         <ArticlesList path="/:topic/articles" />
         <IndividualArticle path="/:topic/articles/:article_id" />
+        <WriteArticle path="write-article" />
       </Router>
     </div>
   );

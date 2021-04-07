@@ -32,3 +32,14 @@
   margin: 0 15%;
   text-align: left;
 }
+
+form {
+  margin-top: 20px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-bottom: 20px;
+}

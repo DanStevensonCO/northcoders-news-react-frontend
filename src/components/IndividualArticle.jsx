@@ -31,7 +31,7 @@ class IndividualArticle extends Component {
         let formattedDate = dateFormatter(created_at)
         
         return (
-            <article class="article-card">
+            <article className="article-card">
                 <h1>{title}</h1>
                 <h3>{topic}</h3>
                 <h3>Votes: { votes }</h3>
