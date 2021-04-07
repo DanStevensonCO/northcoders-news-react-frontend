@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import {getArticleById, getCommentsByArticleId} from '../utils/api'
+import { getArticleById, getCommentsByArticleId } from '../utils/api'
+
+import { dateFormatter } from '../utils/dateFormatter'
 
 class IndividualArticle extends Component {
     state = {
@@ -27,12 +29,7 @@ class IndividualArticle extends Component {
 
         const {comments} = this.state
 
-        let dateObj = new Date(created_at)
-        let dateElems = dateObj.toString().split(" ")
-        let formattedDate =
-            dateElems[2] + " " +
-            dateElems[1] + " " +
-            dateElems[3]
+        let formattedDate = dateFormatter(created_at)
         
         return (
             <article class="article-card">
