@@ -18,7 +18,6 @@ class IndividualArticle extends Component {
         })
         .then(() => {
             return getCommentsByArticleId(article_id).then((comments) => {
-                console.log(comments)
                 this.setState({comments})
             })
         })
