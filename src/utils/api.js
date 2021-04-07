@@ -33,10 +33,18 @@ export const getCommentsByArticleId = (article_id) => {
         })
 }
 
+export const postComment = ((newComment, article_id) => {
+    // newComment.article_id = parseInt(article_id)
+    console.log(newComment)
+    return newsApi.post(`/articles/${article_id}/comments`, newComment)
+        .then(res => {
+            console.log(res)
+            return res
+        })
+})
+
 export const postArticle = (newPost => {
-    console.log(newPost)
     return newsApi.post(`/articles`, newPost).then((res) => {
         console.log(res)
     })
-
 })

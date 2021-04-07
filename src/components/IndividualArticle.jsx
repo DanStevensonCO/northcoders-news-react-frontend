@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import { getArticleById, getCommentsByArticleId } from '../utils/api'
+import PostComment from './PostComment'
 
 import { dateFormatter } from '../utils/dateFormatter'
+
 
 class IndividualArticle extends Component {
     state = {
@@ -37,13 +39,17 @@ class IndividualArticle extends Component {
                 <h3>Votes: { votes }</h3>
                 <h3>By {author} on {formattedDate}</h3>
                 <p>{body}</p>
+
+                <PostComment article_id={this.props.article_id}/>
+
                 <h2>Comments:</h2>
 
-                    {comments.map((comment) => {
+                {comments.map(({ body, author, votes, created_at }) => {
+                        const formattedDate = dateFormatter(created_at)
                         return (
                             <div>
-                                <p>{comment.author} | votes: { comment.votes}</p>
-                                <p>{ comment.body}</p>
+                                <p>{author} | votes: {votes} | { formattedDate}</p>
+                                <p>{ body}</p>
                             </div>
                         )
                     })}
