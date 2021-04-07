@@ -31,7 +31,7 @@ class IndividualArticle extends Component {
                 <h1>{title}</h1>
                 <h3>{topic}</h3>
                 <h3>Votes: { votes }</h3>
-                <h3>By @{author} on {formattedDate}</h3>
+                <h3>By {author} on {formattedDate}</h3>
                 <p>{body}</p>
                 <h2>Comments:</h2>
             </article>
