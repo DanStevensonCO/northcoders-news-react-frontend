@@ -3,6 +3,7 @@ import { Link } from '@reach/router'
 
 import { getArticles } from '../utils/api'
 import { dateFormatter } from '../utils/dateFormatter'
+import VotesComponent from './VotesComponent';
 
 class ArticlesList extends Component {
     state = {
@@ -67,8 +68,8 @@ class ArticlesList extends Component {
                     return (
                     <section className="article-card" key={article_id}>
                             <h2><Link to={`/${path}`}>{title}</Link></h2>
-                            <h3>{topic}</h3>
-                            <h3>{author} | {formattedDate} | Votes: { votes }</h3>
+                            <h3>{author} | {formattedDate} </h3>
+                            <VotesComponent contentType="articles" id={ article_id} votes={ votes }/>
                             <p>{bodyPreview}... <Link to={path}>Read more</Link></p>
                     </section>
                     )

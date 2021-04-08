@@ -5,6 +5,7 @@ import { getArticleById } from '../utils/api'
 import ArticleComments from './ArticleComments'
 
 import { dateFormatter } from '../utils/dateFormatter'
+import VotesComponent from './VotesComponent';
 
 
 class IndividualArticle extends Component {
@@ -21,15 +22,16 @@ class IndividualArticle extends Component {
     }
 
     render() {
-        const { title, body, votes, topic, author, created_at } = this.state.article
+        const { article_id, title, body, votes, author, created_at } = this.state.article
 
         let formattedDate = dateFormatter(created_at)
         
         return (
             <article className="article-card">
                 <h1>{title}</h1>
-                <h3>{topic}</h3>
-                <h3>Votes: { votes }</h3>
+
+                <VotesComponent contentType="articles" id={ article_id} votes={ votes }/>
+                
                 <h3>By {author} on {formattedDate}</h3>
                 <p>{body}</p>
 

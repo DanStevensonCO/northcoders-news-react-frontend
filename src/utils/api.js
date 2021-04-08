@@ -46,6 +46,13 @@ export const deleteComment = ((comment_id, article_id) => {
     })
 }) 
 
+export const patchVote = (contentType, id, inc) => {
+    const incrementerObj = {inc_votes: inc}
+    return newsApi.patch(`${contentType}/${id}`, incrementerObj).then(res => {
+        console.log(res)
+    })
+}
+
 export const postArticle = (newPost => {
     return newsApi.post(`/articles`, newPost).then((res) => {
         return res

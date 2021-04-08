@@ -4,6 +4,7 @@ import {Link} from '@reach/router'
 import { getCommentsByArticleId, postComment, deleteComment } from '../utils/api'
 
 import {dateFormatter} from '../utils/dateFormatter'
+import VotesComponent from './VotesComponent';
 
 class ArticleComments extends Component {
     state = {
@@ -75,8 +76,9 @@ class ArticleComments extends Component {
                         )
                     } else {
                         return (
-                            <div className="comment" id={comment_id} key={ comment_id}>
-                                <p>{author} | votes: {votes} | {formattedDate} </p>
+                            <div className="comment" id={comment_id} key={comment_id}>
+                                <VotesComponent contentType="comments" id={ comment_id} votes={ votes }/>
+                                <p>{author} | {formattedDate} </p>
                                 <p>{ body}</p>
                             </div>
                         )
