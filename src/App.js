@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import ArticlesList from './components/ArticlesList'
 import IndividualArticle from './components/IndividualArticle'
 import WriteArticle from './components/WriteArticle'
+import ErrorPage from './components/ErrorPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <ArticlesList path="/:topic/articles" />
         <IndividualArticle path="/:topic/articles/:article_id" />
         <WriteArticle path="write-article" />
+        <ErrorPage default />
       </Router>
     </div>
   );

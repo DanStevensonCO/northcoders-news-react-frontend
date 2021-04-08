@@ -13,6 +13,8 @@ class ArticleComments extends Component {
         commentDeleted: false,
         username: "tickle122",
         body: "",
+        formClassName: "post-comment-form--default",
+        formErrorMsgHidden: true,
     }
     
     componentDidMount() {
@@ -30,12 +32,24 @@ class ArticleComments extends Component {
 
         const { article_id } = this.props
 
-        // postComment and then load new comment in list without refresh
-        return postComment(newPost, article_id).then(() => {
-            return getCommentsByArticleId(article_id).then((comments) => {
-                this.setState({ comments })
+        if (body.length === 0) {
+            // alert("Please enter a comment")
+            this.setState(() => {
+                return {
+                    formClassName: "post-comment-form--error",
+                    formErrorMsgHidden: false,
+                }
             })
-        })
+
+        } else {
+            // postComment and then load new comment in list without refresh
+            return postComment(newPost, article_id).then(() => {
+                return getCommentsByArticleId(article_id).then((comments) => {
+                    this.setState({ comments })
+                })
+            })
+        }
+
     }
 
     handleChange = (event) => {
@@ -44,7 +58,7 @@ class ArticleComments extends Component {
     }
 
     handleDeleteComment = (event) => {
-        const comment_id = event.target.parentElement.parentElement.id
+        const comment_id = event.target.parentElement.parentElement.parentElement.id
         const { article_id } = this.props
         
         // deleteComment and then load new list of comments 
@@ -57,7 +71,7 @@ class ArticleComments extends Component {
     }
     
     render() {
-        const { comments } = this.state
+        const { comments, formClassName, formErrorMsgHidden } = this.state
 
         return (
             <div className="article-comments">
@@ -74,7 +88,7 @@ class ArticleComments extends Component {
                                 </div>
                                 <div className="comment-text">
                                     <p>{author} | {formattedDate} | 
-                                <Link to="" onClick={this.handleDeleteComment}>delete</Link>
+                                <button onClick={this.handleDeleteComment}>Delete comment</button>
                                 </p>
                                     <p>{ body}</p>
                                 </div>
@@ -99,8 +113,9 @@ class ArticleComments extends Component {
                 <div id="post-comment-block">
                     <h2>Post a new comment</h2>
                     <p>Logged in as tickle122</p>
-                    <form onSubmit={this.handleSubmit}>                    
-                        <label htmlFor="body">Comment: </label><br/>
+                    <form className={ formClassName } onSubmit={this.handleSubmit}>
+                        <label htmlFor="body">Comment: </label><br />
+                        <p hidden={ formErrorMsgHidden }>Enter comment text</p>
                         <textarea type="textarea" rows="4" cols="50" name="body" id="body" onChange={this.handleChange}/><br/>
                         
                         <button type="submit">Post new comment</button>

@@ -113,6 +113,16 @@ form {
   margin-bottom: 20px;
 }
 
+.post-comment-form--default {
+  padding-left: 15px;
+}
+
+.post-comment-form--error {
+  color: red;
+  padding-left: 10px;
+  border-left: 5px solid red;
+}
+
 .toggle-votes {
   display: flex;
   flex-direction: column;
