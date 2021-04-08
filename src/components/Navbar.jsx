@@ -25,12 +25,12 @@ class Navbar extends Component {
 
         return (
             <nav className="navbar">
-                {capitalisedTopics.map((topic) => {
-                    let path = `${topic.toLowerCase()}/articles`
-                    return (
-                        <Link to={path} key={ topic }>{ topic }</Link>
-                    )
-                })}
+                    {capitalisedTopics.map((topic) => {
+                        let path = `${topic.toLowerCase()}/articles`
+                        return (
+                            <Link to={path} key={ topic } className="navbar-link">{ topic }</Link>
+                        )
+                    })}
             </nav>
         );
     }

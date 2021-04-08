@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from '@reach/router'
 
 import { getArticleById } from '../utils/api'
 
@@ -22,17 +23,25 @@ class IndividualArticle extends Component {
     }
 
     render() {
-        const { article_id, title, body, votes, author, created_at } = this.state.article
+        const { article_id, title, body, topic, votes, author, created_at } = this.state.article
 
         let formattedDate = dateFormatter(created_at)
         
         return (
-            <article className="article-card">
-                <h1>{title}</h1>
+            <article>
+                <div className="individual-article-header">
+                    <div className="individual-article-votes-block">
+                        <VotesComponent contentType="articles" id={ article_id} votes={ votes }/>
+                    </div>
 
-                <VotesComponent contentType="articles" id={ article_id} votes={ votes }/>
-                
-                <h3>By {author} on {formattedDate}</h3>
+                    <div className="individual-article-header-text">
+                        <h3><Link to={`/${topic}/articles`}>{topic}</Link> | {author} | {formattedDate}</h3>
+                        <h1>{title}</h1>
+                    </div>
+                </div>
+
+
+
                 <p>{body}</p>
 
                 <ArticleComments article_id={this.props.article_id}/>

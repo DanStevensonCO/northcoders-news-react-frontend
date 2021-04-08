@@ -59,7 +59,7 @@ class ArticlesList extends Component {
                 </div>
                
                 {articles.map(({ article_id, title, topic, body, author, votes, created_at }) => {
-                    let bodyPreview = body.substring(0, 140)
+                    let bodyPreview = body.substring(0, 250)
 
                     let path = `${topic}/articles/${article_id}`
 
@@ -67,10 +67,14 @@ class ArticlesList extends Component {
 
                     return (
                     <section className="article-card" key={article_id}>
-                            <h2><Link to={`/${path}`}>{title}</Link></h2>
-                            <h3>{author} | {formattedDate} </h3>
-                            <VotesComponent contentType="articles" id={ article_id} votes={ votes }/>
-                            <p>{bodyPreview}... <Link to={path}>Read more</Link></p>
+                            <div className="articles-list-votes-block">
+                                <VotesComponent contentType="articles" id={article_id} votes={votes} />
+                            </div>
+                            <div className="articles-list-article-preview">
+                                <h2><Link to={`/${path}`}>{title}</Link></h2>
+                                <h3>{author} | {formattedDate} </h3>
+                                <p>{bodyPreview}... <Link to={path}>Read more</Link></p>
+                            </div>
                     </section>
                     )
                 })}

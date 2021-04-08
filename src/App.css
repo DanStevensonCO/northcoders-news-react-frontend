@@ -1,6 +1,7 @@
 .App {
+  font-family: Avenir, Arial, sans-serif;
   text-align: center;
-  border: 5px red solid;
+  /* border: 5px red solid; */
   height: 100vh;
   display: grid;
   grid-template: 1fr 1fr 8fr / 1fr;
@@ -11,26 +12,94 @@
 }
 
 .header {
-  border: 5px green solid;
+  /* border: 5px green solid; */
   grid-area: header;
 }
 
 .navbar {
-  border: 5px blue solid;
+  /* border: 5px blue solid; */
   grid-area: navbar;
-  display: flex;
-  flex-direction: column;
+}
+
+.navbar-link {
+  margin-left: 10px;
 }
 
 .content {
-  border: 5px orange solid;
+  /* border: 5px orange solid; */
   grid-area: content;
 }
 
 .article-card {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-areas: "articles-list-votes-block articles-list-article-preview";
   border: 2px black solid;
+  border-radius: 10px;
+  margin: 10px 15%;
+  padding: 5px;
+  text-align: left;
+}
+
+.articles-list-votes-block {
+  grid-area: articles-list-votes-block;
+  margin: auto;
+}
+
+.toggle-votes {
+  margin: auto;
+}
+
+.articles-list-article-preview {
+  grid-area: articles-list-article-preview;
+}
+
+article {
+  /* border: 2px black solid; */
   margin: 0 15%;
   text-align: left;
+}
+
+.individual-article-header {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-areas: "individual-article-votes-block individual-article-header-text";
+  text-align: left;
+}
+
+.individual-article-votes-block {
+  grid-area: individual-article-votes-block;
+  margin: auto;
+}
+
+.individual-article-header-text {
+  grid-area: individual-article-header-text;
+  margin-left: 15px;
+}
+
+.comment {
+  border: 1px black solid;
+  border-radius: 10px;
+  margin: 10px 5%;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-areas: "comment-votes-block comment-text";
+  text-align: left;
+}
+
+.comment-votes-block {
+  grid-area: comment-votes-block;
+  margin: auto;
+}
+
+.comment-text {
+  grid-area: comment-text;
+  margin-left: 25px;
+}
+
+#post-comment-block {
+  margin: 0 5% 100px 5%;
 }
 
 form {

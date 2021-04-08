@@ -61,39 +61,51 @@ class ArticleComments extends Component {
 
         return (
             <div className="article-comments">
+                <a href="#post-comment-block">Post a comment</a>
                 <h2>Comments</h2>
 
                 {comments.map(({ body, author, votes, created_at, comment_id }) => {
                     const formattedDate = dateFormatter(created_at)
                     if (author === this.state.username) {
                         return (
-                            <div className="comment" id={comment_id} key={ comment_id}>
-                                <p>{author} | votes: {votes} | {formattedDate} | 
+                            <div className="comment" id={comment_id} key={comment_id}>
+                                <div className="comment-votes-block">
+                                    <VotesComponent contentType="comments" id={comment_id} votes={votes} currentUser={true}/>
+                                </div>
+                                <div className="comment-text">
+                                    <p>{author} | {formattedDate} | 
                                 <Link to="" onClick={this.handleDeleteComment}>delete</Link>
                                 </p>
-                                <p>{ body}</p>
+                                    <p>{ body}</p>
+                                </div>
                             </div>
                         )
                     } else {
                         return (
                             <div className="comment" id={comment_id} key={comment_id}>
-                                <VotesComponent contentType="comments" id={ comment_id} votes={ votes }/>
-                                <p>{author} | {formattedDate} </p>
-                                <p>{ body}</p>
+                                <div className="comment-votes-block">
+                                    <VotesComponent contentType="comments" id={ comment_id} votes={ votes } currentUser={false}/>
+                                </div>
+                                <div className="comment-text">
+                                    <p>{author} | {formattedDate} </p>
+                                    <p>{ body}</p>
+                                </div>
                             </div>
                         )
                     }
 
                 })}
                 
-                <h2>Post a new comment</h2>
-                <p>Logged in as tickle122</p>
-                <form onSubmit={this.handleSubmit}>                    
-                    <label htmlFor="body">Comment: </label><br/>
-                    <textarea type="textarea" name="body" id="body" onChange={this.handleChange}/><br/>
-                    
-                    <button type="submit">Post new comment</button>
-                </form>
+                <div id="post-comment-block">
+                    <h2>Post a new comment</h2>
+                    <p>Logged in as tickle122</p>
+                    <form onSubmit={this.handleSubmit}>                    
+                        <label htmlFor="body">Comment: </label><br/>
+                        <textarea type="textarea" rows="4" cols="50" name="body" id="body" onChange={this.handleChange}/><br/>
+                        
+                        <button type="submit">Post new comment</button>
+                    </form>
+                </div>
 
             </div>
         );

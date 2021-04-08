@@ -19,14 +19,14 @@ class VotesComponent extends Component {
     }
     
     render() {
-        const { contentType, id, votes } = this.props
+        const { contentType, id, votes, currentUser } = this.props
         const {voteChange} = this.state
 
         return (
             <div className="toggle-votes">
-                <button onClick={() => this.toggleVotes(contentType, id, 1) }>+</button>
+                <button hidden={ currentUser } onClick={() => this.toggleVotes(contentType, id, 1) }>+</button>
                 <h3>{votes + voteChange}</h3>
-                <button onClick={() => this.toggleVotes(contentType, id, -1) }>-</button>
+                <button hidden={ currentUser } onClick={() => this.toggleVotes(contentType, id, -1) }>-</button>
             </div>
         );
     }
