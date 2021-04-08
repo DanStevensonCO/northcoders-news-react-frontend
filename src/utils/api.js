@@ -35,26 +35,17 @@ export const getCommentsByArticleId = (article_id) => {
 
 export const postComment = ((newComment, article_id) => {
     return newsApi.post(`/articles/${article_id}/comments`, newComment)
-        .then(res => {
-            return res
-        })
 })
 
 export const deleteComment = ((comment_id, article_id) => {
-    return newsApi.delete(`/comments/${comment_id}`).then(res => {
-        return res
-    })
+    return newsApi.delete(`/comments/${comment_id}`)
 }) 
 
 export const patchVote = (contentType, id, inc) => {
     const incrementerObj = {inc_votes: inc}
-    return newsApi.patch(`${contentType}/${id}`, incrementerObj).then(res => {
-        console.log(res)
-    })
+    return newsApi.patch(`${contentType}/${id}`, incrementerObj)
 }
 
 export const postArticle = (newPost => {
-    return newsApi.post(`/articles`, newPost).then((res) => {
-        return res
-    })
+    return newsApi.post(`/articles`, newPost)
 })
