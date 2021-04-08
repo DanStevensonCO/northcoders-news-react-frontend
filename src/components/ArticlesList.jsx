@@ -8,7 +8,7 @@ import VotesComponent from './VotesComponent';
 class ArticlesList extends Component {
     state = {
         articles: [],
-        sort_by: "created_at",
+        sort_by: "votes",
         isLoading: true,
     }
 
@@ -40,16 +40,16 @@ class ArticlesList extends Component {
                     <label htmlFor="sort_by">Sort by:</label> 
                     <input
                         type="radio"
-                        value="Date published"
-                        name="sort_by"
-                        onChange={() => this.setState({ sort_by: "created_at" })}
-                        checked={this.state.sort_by === "created_at"}/> Date published
-                    <input
-                        type="radio"
                         value="Votes"
                         name="sort_by"
                         onChange={() => this.setState({ sort_by: "votes" })}
                         checked={this.state.sort_by === "votes"}/> Votes
+                    <input
+                        type="radio"
+                        value="Date published"
+                        name="sort_by"
+                        onChange={() => this.setState({ sort_by: "created_at" })}
+                        checked={this.state.sort_by === "created_at"}/> Date published
                     <input
                         type="radio"
                         value="Comments"
