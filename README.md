@@ -4,11 +4,11 @@ I built this project while studying with [Northcoders](https://www.northcoders.c
 
 It was built with [Create React App](https://github.com/facebook/create-react-app).
 
-## To view a hosted version
+## View a hosted version of this project
 
 This site is hosted on my domain here: [nc-news.danstevenson.co](http://nc-news.danstevenson.co/)
 
-## To work with this repo locally:
+## Work with this repo locally
 
 - open your favorite CLI app and change directory (`cd`) to the location where you'd like to install it
 - run `git clone https://github.com/DanStevensonCO/northcoders-news-react-frontend.git`
@@ -22,7 +22,7 @@ The page will reload if you make edits.
 
 You will also see any lint errors in the console.
 
-## Dependencies and packages
+## Find out more about this project's dependencies and packages
 
 Here's a list of some NPM packages used in this project and what they are needed for...
 
@@ -30,3 +30,11 @@ Here's a list of some NPM packages used in this project and what they are needed
 - `axios`: The project requires connection to my backend application and the data contained in it (more info on that repo [here](https://github.com/DanStevensonCO/be-nc-news).) Axios creates API calls to the backend.
 - `@reach/router`: React is, by default, a single-page application (SPA) framework. Reach Router allows this project to include multiple, dynamic routes (e.g. `/topic-name/articles/article-id`).
 - `netlify`: This project is hosted on Netlify, and the Netlify NPM is for deployment handling.
+
+## Find out more about the backend
+
+This frontend repo connects to the backend database and APIs.
+
+The backend project repo is on GitHub here: https://github.com/DanStevensonCO/be-nc-news
+
+It is hosted on Heroku, and API documentation is available here: https://nc-news-dan-stevenson.herokuapp.com/api
