@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router'
 
+import { MuiThemeProvider, createMuiTheme, FormControl, FormLabel, RadioGroup, Radio, FormControlLabel } from '@material-ui/core'
+
 import { getArticles } from '../utils/api'
 import { dateFormatter } from '../utils/dateFormatter'
 import VotesComponent from './VotesComponent';
@@ -33,30 +35,36 @@ class ArticlesList extends Component {
     render() {
         const { articles } = this.state
 
+        const theme = createMuiTheme({
+            overrides: {
+                MuiRadio: {
+                root: {
+                    color: 'green',
+                },
+                colorSecondary: {
+                    '&$checked': {
+                    color: 'green',
+                    },
+                },
+                },
+            },
+        });
+
         return (
             <main>
                
-                <div className="sort-by-options">
-                    <label htmlFor="sort_by">Sort by:</label> 
-                    <input
-                        type="radio"
-                        value="Votes"
-                        name="sort_by"
-                        onChange={() => this.setState({ sort_by: "votes" })}
-                        checked={this.state.sort_by === "votes"}/> Votes
-                    <input
-                        type="radio"
-                        value="Date published"
-                        name="sort_by"
-                        onChange={() => this.setState({ sort_by: "created_at" })}
-                        checked={this.state.sort_by === "created_at"}/> Date published
-                    <input
-                        type="radio"
-                        value="Comments"
-                        name="sort_by"
-                        onChange={() => this.setState({ sort_by: "comment_count" })}
-                        checked={this.state.sort_by === "comment_count"}/> Comments
-                </div>
+                <MuiThemeProvider theme={theme}>
+                    <div className="sort-by-options">
+                        <FormControl component="fieldset">
+                            <FormLabel component="legend">Sort by</FormLabel>
+                            <RadioGroup aria-label="sort-by" name="sort-by" defaultValue="votes">
+                                <FormControlLabel color="primary" value="votes" control={<Radio />} label="Votes" onChange={() => this.setState({ sort_by: "votes" })}/>
+                                <FormControlLabel value="date-published" control={<Radio />} label="Date published" onChange={() => this.setState({ sort_by: "created_at" })}/>
+                                <FormControlLabel value="comments" control={<Radio />} label="Comments" onChange={() => this.setState({ sort_by: "comment_count" })}/>
+                            </RadioGroup>
+                        </FormControl>
+                    </div>
+                </MuiThemeProvider>
                
                 {articles.map(({ article_id, title, topic, body, author, votes, created_at }) => {
                     let bodyPreview = body.substring(0, 250)

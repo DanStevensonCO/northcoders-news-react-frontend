@@ -63,9 +63,14 @@ a {
   text-align: left;
 }
 
+.votes-count {
+  margin-left: 10px;
+}
+
 .articles-list-votes-block {
   grid-area: articles-list-votes-block;
   margin: auto;
+  margin-right: 20px;
 }
 
 .toggle-votes {
@@ -92,6 +97,7 @@ article {
 .individual-article-votes-block {
   grid-area: individual-article-votes-block;
   margin: auto;
+  margin-right: 20px;
 }
 
 .individual-article-header-text {
@@ -154,6 +160,7 @@ article {
 .comment-votes-block {
   grid-area: comment-votes-block;
   margin: auto;
+  margin-right: 20px;
 }
 
 .comment-text {
