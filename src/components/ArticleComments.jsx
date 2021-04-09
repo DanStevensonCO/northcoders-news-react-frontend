@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from '@reach/router'
 
 import { getCommentsByArticleId, postComment, deleteComment } from '../utils/api'
 
