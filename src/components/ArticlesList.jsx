@@ -72,7 +72,7 @@ class ArticlesList extends Component {
                             </div>
                             <div className="articles-list-article-preview">
                                 <h2><Link to={`/${path}`}>{title}</Link></h2>
-                                <h3>{author} | {formattedDate} </h3>
+                                <h3>{author} | { topic } | {formattedDate} </h3>
                                 <p>{bodyPreview}... <Link to={path}>Read more</Link></p>
                             </div>
                     </section>
