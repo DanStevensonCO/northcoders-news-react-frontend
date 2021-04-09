@@ -11,14 +11,36 @@
     "content";
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.header a,
+.navbar a {
+  color: white;
+}
+
+a {
+  color: #00703c;
+}
+
 .header {
   /* border: 5px green solid; */
   grid-area: header;
+  background-color: #00703c;
 }
 
 .navbar {
   /* border: 5px blue solid; */
   grid-area: navbar;
+  background-color: #00703c;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .navbar-link {
@@ -77,15 +99,56 @@ article {
   margin-left: 15px;
 }
 
+.comments-list {
+  float: left;
+  overflow-y: auto;
+  overflow: scroll;
+  max-height: 450px;
+  margin-bottom: 25px;
+}
+
+/* Force scrollbar to display for comments-list div */
+.comments-list::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
 .comment {
+  background-color: lightgray;
   border: 1px black solid;
   border-radius: 10px;
   margin: 10px 5%;
   padding: 10px;
+  width: 80%;
+  float: left;
   display: grid;
   grid-template-columns: 50px 1fr;
   grid-template-areas: "comment-votes-block comment-text";
   text-align: left;
+}
+
+.comment--current-user {
+  background-color: lightblue;
+  border: 1px black solid;
+  border-radius: 10px;
+  margin: 10px 5%;
+  padding: 10px;
+  width: 80%;
+  float: right;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-areas: "comment-votes-block comment-text";
+  text-align: left;
+}
+
+.delete-comment-button {
+  margin-left: 10px;
 }
 
 .comment-votes-block {

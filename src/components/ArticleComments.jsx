@@ -77,17 +77,18 @@ class ArticleComments extends Component {
                 <a href="#post-comment-block">Post a comment</a>
                 <h2>Comments</h2>
 
+                <div className="comments-list">
                 {comments.map(({ body, author, votes, created_at, comment_id }) => {
                     const formattedDate = dateFormatter(created_at)
                     if (author === this.state.username) {
                         return (
-                            <div className="comment" id={comment_id} key={comment_id}>
+                            <div className="comment--current-user" id={comment_id} key={comment_id}>
                                 <div className="comment-votes-block">
                                     <VotesComponent contentType="comments" id={comment_id} votes={votes} currentUser={true}/>
                                 </div>
                                 <div className="comment-text">
-                                    <p>{author} | {formattedDate} | 
-                                <button onClick={this.handleDeleteComment}>Delete comment</button>
+                                    <p>{author} | {formattedDate} 
+                                <button className="delete-comment-button"onClick={this.handleDeleteComment}>Delete comment</button>
                                 </p>
                                     <p>{ body}</p>
                                 </div>
@@ -108,6 +109,7 @@ class ArticleComments extends Component {
                     }
 
                 })}
+                </div>
                 
                 <div id="post-comment-block">
                     <h2>Post a new comment</h2>
