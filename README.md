@@ -6,7 +6,7 @@ It was built with [Create React App](https://github.com/facebook/create-react-ap
 
 ## View a hosted version of this project
 
-This site is hosted on my domain here: [nc-news.danstevenson.co](http://nc-news.danstevenson.co/)
+This site is hosted on my domain here: https://northcoders-news-react-frontend.netlify.app/
 
 ## Work with this repo locally
 
