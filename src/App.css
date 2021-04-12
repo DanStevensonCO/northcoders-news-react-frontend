@@ -231,3 +231,17 @@ textarea {
     padding-top: 150px;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .sort-by-options {
+    margin-left: 5%;
+  }
+
+  .article-card {
+    margin: 10px 5%;
+  }
+
+  article {
+    margin: 5%;
+  }
+}
