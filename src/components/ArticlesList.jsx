@@ -56,9 +56,9 @@ class ArticlesList extends Component {
                 <MuiThemeProvider theme={theme}>
                     <div className="sort-by-options">
                         <FormControl component="fieldset">
-                            <FormLabel component="legend">Sort by</FormLabel>
+                            <FormLabel className="sort-by-label" component="legend">Sort by</FormLabel>
                             <RadioGroup aria-label="sort-by" name="sort-by" defaultValue="votes">
-                                <FormControlLabel color="primary" value="votes" control={<Radio />} label="Votes" onChange={() => this.setState({ sort_by: "votes" })}/>
+                                <FormControlLabel className="radio-option" value="votes" control={<Radio />} label="Votes" onChange={() => this.setState({ sort_by: "votes" })}/>
                                 <FormControlLabel value="date-published" control={<Radio />} label="Date published" onChange={() => this.setState({ sort_by: "created_at" })}/>
                                 <FormControlLabel value="comments" control={<Radio />} label="Comments" onChange={() => this.setState({ sort_by: "comment_count" })}/>
                             </RadioGroup>
@@ -66,26 +66,28 @@ class ArticlesList extends Component {
                     </div>
                 </MuiThemeProvider>
                
-                {articles.map(({ article_id, title, topic, body, author, votes, created_at }) => {
-                    let bodyPreview = body.substring(0, 250)
+                <div className="articles-list">
+                    {articles.map(({ article_id, title, topic, body, author, votes, created_at }) => {
+                        let bodyPreview = body.substring(0, 250)
 
-                    let path = `${topic}/articles/${article_id}`
+                        let path = `${topic}/articles/${article_id}`
 
-                    let formattedDate = dateFormatter(created_at)
+                        let formattedDate = dateFormatter(created_at)
 
-                    return (
-                    <section className="article-card" key={article_id}>
-                            <div className="articles-list-votes-block">
-                                <VotesComponent contentType="articles" id={article_id} votes={votes} />
-                            </div>
-                            <div className="articles-list-article-preview">
-                                <h2><Link to={`/${path}`}>{title}</Link></h2>
-                                <h3><Link to={`/${topic}/articles`}>{ topic }</Link> | {author} | {formattedDate} </h3>
-                                <p>{bodyPreview}... <Link to={path}>Read more</Link></p>
-                            </div>
-                    </section>
-                    )
-                })}
+                        return (
+                        <section className="article-card" key={article_id}>
+                                <div className="articles-list-votes-block">
+                                    <VotesComponent contentType="articles" id={article_id} votes={votes} />
+                                </div>
+                                <div className="articles-list-article-preview">
+                                    <h2><Link to={`/${path}`}>{title}</Link></h2>
+                                    <h3><Link to={`/${topic}/articles`}>{ topic }</Link> | {author} | {formattedDate} </h3>
+                                    <p>{bodyPreview}... <Link to={path}>Read more</Link></p>
+                                </div>
+                        </section>
+                        )
+                    })}
+                </div>
             </main>
         )
         

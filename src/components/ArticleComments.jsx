@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { getCommentsByArticleId, postComment, deleteComment } from '../utils/api'
 
+import { Button } from '@material-ui/core'
+
 import {dateFormatter} from '../utils/dateFormatter'
 import VotesComponent from './VotesComponent';
 
@@ -57,7 +59,7 @@ class ArticleComments extends Component {
     }
 
     handleDeleteComment = (event) => {
-        const comment_id = event.target.parentElement.parentElement.parentElement.id
+        const comment_id = event.target.parentElement.parentElement.parentElement.parentElement.id
         const { article_id } = this.props
         
         // deleteComment and then load new list of comments 
@@ -88,7 +90,7 @@ class ArticleComments extends Component {
                                 </div>
                                 <div className="comment-text">
                                     <p>{author} | {formattedDate} 
-                                <button className="delete-comment-button"onClick={this.handleDeleteComment}>Delete comment</button>
+                                <Button size="small" variant="contained" className="delete-comment-button"onClick={this.handleDeleteComment}>Delete comment</Button>
                                 </p>
                                     <p>{ body}</p>
                                 </div>
@@ -119,7 +121,7 @@ class ArticleComments extends Component {
                         <p hidden={ formErrorMsgHidden }>Enter comment text</p>
                         <textarea type="textarea" rows="4" cols="50" name="body" id="body" onChange={this.handleChange}/><br/>
                         
-                        <button type="submit">Post new comment</button>
+                        <Button variant="outlined" color="primary" type="submit">Post new comment</Button>
                     </form>
                 </div>
 
