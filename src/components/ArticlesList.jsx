@@ -17,7 +17,7 @@ class ArticlesList extends Component {
     componentDidMount() {
         const { sort_by } = this.state
         const {topic} = this.props
-        return getArticles(topic, sort_by).then((articles) => {
+        getArticles(topic, sort_by).then((articles) => {
             this.setState({articles, isLoading: false})
         })
     }
@@ -26,7 +26,7 @@ class ArticlesList extends Component {
         const { sort_by } = this.state
         const { topic } = this.props
         if (topic !== prevProps.topic || prevState.sort_by !== this.state.sort_by) {
-            return getArticles(topic, sort_by).then((articles) => {
+            getArticles(topic, sort_by).then((articles) => {
                 this.setState({articles, isLoading: false})
             })
         }

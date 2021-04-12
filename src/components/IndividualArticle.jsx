@@ -18,7 +18,7 @@ class IndividualArticle extends Component {
     
     componentDidMount() {
         const {article_id} = this.props
-        return getArticleById(article_id)
+        getArticleById(article_id)
             .then((article) => {
             this.setState({article, isLoading: false})
             }).catch((err) => {

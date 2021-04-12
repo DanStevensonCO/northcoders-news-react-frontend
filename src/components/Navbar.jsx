@@ -10,7 +10,7 @@ class Navbar extends Component {
     }
 
     componentDidMount() {
-        return getTopics().then((topics) => {
+        getTopics().then((topics) => {
             this.setState({topics, isLoading: false})
         })
     }

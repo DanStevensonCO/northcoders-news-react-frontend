@@ -7,9 +7,7 @@ class VotesComponent extends Component {
         voteChange: 0,
     }
 
-    toggleVotes = (contentType, id, inc) => {
-        console.log(contentType, id, inc)
-        
+    toggleVotes = (contentType, id, inc) => {        
         this.setState((currState) => {
             return {
                 voteChange: currState.voteChange + inc

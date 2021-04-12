@@ -21,7 +21,7 @@ class ArticleComments extends Component {
     componentDidMount() {
         const { article_id } = this.props
         
-        return getCommentsByArticleId(article_id).then((comments) => {
+        getCommentsByArticleId(article_id).then((comments) => {
             this.setState({ comments })
         })
     }
