@@ -16,6 +16,7 @@ class ArticleComments extends Component {
         body: "",
         formClassName: "post-comment-form--default",
         formErrorMsgHidden: true,
+        err: null,
     }
     
     componentDidMount() {
@@ -23,6 +24,8 @@ class ArticleComments extends Component {
         
         getCommentsByArticleId(article_id).then((comments) => {
             this.setState({ comments })
+        }).catch((err) => {
+                this.setState({ err, isLoading: false})
         })
     }
 

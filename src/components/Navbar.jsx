@@ -12,11 +12,19 @@ class Navbar extends Component {
     componentDidMount() {
         getTopics().then((topics) => {
             this.setState({topics, isLoading: false})
+        }).catch((err) => {
+                this.setState({ err, isLoading: false})
         })
     }
 
     render() {
-        const { topics } = this.state
+        const { topics, isLoading } = this.state
+
+        if (isLoading) {
+            return (
+                <nav className="navabr"></nav>
+            )
+        }
 
         const orderedTopics = topics.map(topic => topic.slug).sort()
         const capitalisedTopics = orderedTopics.map(topic => {

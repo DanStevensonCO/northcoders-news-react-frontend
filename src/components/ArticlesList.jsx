@@ -12,6 +12,7 @@ class ArticlesList extends Component {
         articles: [],
         sort_by: "votes",
         isLoading: true,
+        err: null,
     }
 
     componentDidMount() {
@@ -19,6 +20,8 @@ class ArticlesList extends Component {
         const {topic} = this.props
         getArticles(topic, sort_by).then((articles) => {
             this.setState({articles, isLoading: false})
+        }).catch((err) => {
+                this.setState({ err, isLoading: false})
         })
     }
 
@@ -28,6 +31,8 @@ class ArticlesList extends Component {
         if (topic !== prevProps.topic || prevState.sort_by !== this.state.sort_by) {
             getArticles(topic, sort_by).then((articles) => {
                 this.setState({articles, isLoading: false})
+            }).catch((err) => {
+                this.setState({ err, isLoading: false})
             })
         }
     }
