@@ -33,7 +33,13 @@ class ArticlesList extends Component {
     }
     
     render() {
-        const { articles } = this.state
+        const { articles, isLoading } = this.state
+
+        if (isLoading) {
+            return (
+                <div className="isloading-empty-div"></div>
+            )
+        }
 
         const theme = createMuiTheme({
             overrides: {

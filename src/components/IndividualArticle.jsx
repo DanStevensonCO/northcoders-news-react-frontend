@@ -28,12 +28,18 @@ class IndividualArticle extends Component {
 
     render() {
         const { article_id, title, body, topic, votes, author, created_at } = this.state.article
-        let {err} = this.state
+        const { isLoading, err } = this.state
 
-        let formattedDate = dateFormatter(created_at)
+        const formattedDate = dateFormatter(created_at)
+
+        if (isLoading) {
+            return (
+                <div className="isloading-empty-div"></div>
+            )
+        }
 
         if (err) {
-            let { status, data } = err.response
+            const { status, data } = err.response
             return (
                 <div className="error-message-block">
                     <h2>Error: {status}</h2>
