@@ -45,12 +45,12 @@ class ArticleComments extends Component {
         } else {
             // postComment and then load new comment in list without refresh
             return postComment(newPost, article_id).then(() => {
-                return getCommentsByArticleId(article_id).then((comments) => {
-                    this.setState({ comments })
-                })
+                return getCommentsByArticleId(article_id)
+            })
+                .then((comments) => {
+                this.setState({ comments })
             })
         }
-
     }
 
     handleChange = (event) => {
