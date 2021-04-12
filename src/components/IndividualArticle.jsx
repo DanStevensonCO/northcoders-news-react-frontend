@@ -11,7 +11,7 @@ import VotesComponent from './VotesComponent';
 
 class IndividualArticle extends Component {
     state = {
-        article: [],
+        article: {},
         isLoading: true,
         err: null,
     }
@@ -20,7 +20,8 @@ class IndividualArticle extends Component {
         const {article_id} = this.props
         getArticleById(article_id)
             .then((article) => {
-            this.setState({article, isLoading: false})
+                this.setState({ article, isLoading: false })
+                console.log(this.state)
             }).catch((err) => {
                 this.setState({ err, isLoading: false})
         })
