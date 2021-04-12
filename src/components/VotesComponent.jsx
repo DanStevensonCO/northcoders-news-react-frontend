@@ -7,11 +7,41 @@ class VotesComponent extends Component {
         voteChange: 0,
     }
 
-    toggleVotes = (contentType, id, inc) => {        
-        this.setState((currState) => {
+    toggleVotes = (contentType, id, inc) => {
+        this.setState(((currState) => {
+            // set the voteChange value to optimistically render to user
             return {
-                voteChange: currState.voteChange + inc
+                voteChange: currState.voteChange + inc,
             }
+        }), () => {
+            // check if the vote change value is -1, 0 or 1
+            // and enable/disable the relevant buttons in setState
+
+            let upButtonDisabledBool
+            let downButtonDisabledBool
+            
+            if (this.state.voteChange === -1) {
+                upButtonDisabledBool = false
+                downButtonDisabledBool = true
+            }
+
+            if (this.state.voteChange === 0) {
+                upButtonDisabledBool = false
+                downButtonDisabledBool = false
+            }
+
+            if (this.state.voteChange === 1) {
+                upButtonDisabledBool = true
+                downButtonDisabledBool = false
+            }
+
+            this.setState((currState) => {
+                return {
+                    upButtonDisabled: upButtonDisabledBool,
+                    downButtonDisabled: downButtonDisabledBool,
+                }
+            })
+
         })
 
         patchVote(contentType, id, inc)
@@ -27,14 +57,14 @@ class VotesComponent extends Component {
         });
 
         const { contentType, id, votes, currentUser } = this.props
-        const { voteChange } = this.state
+        const { voteChange, upButtonDisabled, downButtonDisabled } = this.state
 
         return (
              <MuiThemeProvider theme={theme}>
                 <div className="toggle-votes">
-                    <Fab color='primary' size="small" hidden={ currentUser } onClick={() => this.toggleVotes(contentType, id, 1) }>+</Fab>
+                    <Fab disabled={upButtonDisabled} color='primary' size="small" hidden={ currentUser } onClick={() => this.toggleVotes(contentType, id, 1) }>+</Fab>
                     <h3 className="votes-count">{votes + voteChange}</h3>
-                    <Fab color='secondary' size="small" hidden={ currentUser } onClick={() => this.toggleVotes(contentType, id, -1) }>-</Fab>
+                    <Fab disabled={downButtonDisabled} color='secondary' size="small" hidden={ currentUser } onClick={() => this.toggleVotes(contentType, id, -1) }>-</Fab>
                 </div>
              </MuiThemeProvider>
         );
